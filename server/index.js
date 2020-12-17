@@ -3,21 +3,24 @@ const app = express();
 const cors = require("cors");
 const PORT = 4000;
 const mongoose = require("mongoose");
-//const router = express.Router();
 const router = require("./routes/api/blog")
 app.use(cors());
+const connectDB = require("./config/db");
+const path = require("path");
 
-mongoose.connect("mongodb://127.0.0.1:27017/broxblog", {
-  useNewUrlParser: true
-});
+connectDB();
 
-const connection = mongoose.connection;
+//Serve static assets in production
+if (process.env.NODE_ENV === "production") {
+  //Set static folder
+  app.use(express.static("client/build"));
 
-connection.once("open", function() {
-  console.log("Connection with MongoDB was successful");
-});
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.use("/", router);
-app.listen(PORT, function() {
+app.listen(PORT, () => {
   console.log("Server is running on Port: " + PORT);
 });
