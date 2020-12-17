@@ -40,6 +40,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.12.10",
     "redux": "^4.0.5"
   }
 }
