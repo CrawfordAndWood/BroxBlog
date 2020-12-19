@@ -1,4 +1,4 @@
-let post = require("../models/model");
+let post = require("../models/post");
 
 class BlogService{
     constructor(){}

@@ -6,9 +6,10 @@ const blogService = new BlogService();
 const cors = require('cors');
 
 //router.all('*', cors());
-router.route("/getData").get(async (req, res) => {
+router.route("/").get(async (req, res) => {
     try{
         const posts = await blogService.getAllPosts();
+        console.log('posts', posts)
         res.json(posts);
     } catch(error){
         res.status(500).json(error.message);
