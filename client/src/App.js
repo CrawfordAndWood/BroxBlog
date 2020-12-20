@@ -1,9 +1,12 @@
 import React, { Fragment, useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import Blog from "./components/blog/Blog";
+import BlogContainer from "./components/blogcontainer/BlogContainer"
+//import BlogContainer from "./components/blogcontainer/BlogContainer;"
+import Test from "./components/test/Test"
 import Navbar from "./components/nav/Navbar"
 import store from "./store";
-import {getAllPosts} from "./actions/blog";
 
 //css
 import './App.css';
@@ -11,6 +14,7 @@ import './App.css';
 const App = () => {
   return (
     <Provider store={store}>
+      <Router>
       <Fragment>
         <div className="App">
           <Navbar className="navbar"/>
@@ -18,6 +22,8 @@ const App = () => {
           <div className="brox-content">
             <p>Bringing you the latest insights in people and technology</p>
             <Blog/>
+            <BlogContainer/>
+            <Test/>
           </div>
           <div className="sidebar-right"></div>
           <hr/>
@@ -27,6 +33,7 @@ const App = () => {
         </div>
 
       </Fragment>
+      </Router>
     </Provider>
   );
 }
