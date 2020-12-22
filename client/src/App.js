@@ -2,10 +2,10 @@ import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import Blog from "./components/blog/Blog";
-import BlogContainer from "./components/blogcontainer/BlogContainer"
-//import BlogContainer from "./components/blogcontainer/BlogContainer;"
-import Test from "./components/test/Test"
+import BlogContainer from "./components/blogcontainer/BlogContainer";
+import Writer from "./components/write/Writer"
 import Navbar from "./components/nav/Navbar"
+import NotFound from "./components/layout/NotFound"
 import store from "./store";
 
 //css
@@ -20,13 +20,14 @@ const App = () => {
           <Navbar className="navbar"/>
           <div className="sidebar-left"></div>
           <div className="brox-content">
-            <p>Bringing you the latest insights in people and technology</p>
-            <Blog/>
-            <BlogContainer/>
-            <Test/>
+            <Switch>
+              <Route exact path="/" component={BlogContainer} />
+              <Route exact path="/article" component={Blog} />
+              <Route exact path="/write" component={Writer}/>
+              <Route component={NotFound} />
+            </Switch>
           </div>
           <div className="sidebar-right"></div>
-          <hr/>
           <footer className="footer">
             Copyright Crawford and Wood 2020
         </footer>
