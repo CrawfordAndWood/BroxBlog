@@ -6,12 +6,12 @@ import { savePost } from "../../actions/blog";
 
 const Test = ({ savePost }) => {
   const [formData, setFormData] = useState({
-    data: "",
+    post: "",
   });
 
-  const { data } = formData;
+  const { post } = formData;
 
-  const onChange = (data) => setFormData({ ...formData, data });
+  const onChange = (post) => setFormData({ ...formData, post });
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -40,8 +40,8 @@ const Test = ({ savePost }) => {
           onFocus={(event, editor) => {
             //console.log("Focus.", editor);
           }}
-          name="data"
-          value={data}
+          name="post"
+          value={post}
         />
       </form>
     </Fragment>

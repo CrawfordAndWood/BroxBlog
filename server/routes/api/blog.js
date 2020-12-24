@@ -15,7 +15,6 @@ router.get("/", async (req, res) => {
 
 router.post("/new", auth, async (req, res) => {
   try {
-    console.log("well done you made it", req.body);
     let newPostResult = await blogService.newPost(req.body);
     if (newPostResult.Status === "FAILED") {
       return res.status(400).json({ errors: [{ msg: newPostResult.Message }] });

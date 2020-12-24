@@ -17,12 +17,10 @@ class BlogService {
   /* Post Area  */
   async newPost(newPostArgs) {
     try {
-      console.log("2");
-      let post = new Post(newPostArgs);
-      post.id = uuid.v4();
-      post.data = newPostArgs.data;
-      console.log(post);
-      await post.save();
+      let newPost = new Post(newPostArgs);
+      newPost.id = uuid.v4();
+      newPost.post = newPostArgs.post;
+      await newPost.save();
 
       let response = {
         Status: "SUCCESS",

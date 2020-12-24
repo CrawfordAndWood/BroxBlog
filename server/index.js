@@ -1,12 +1,13 @@
 const express = require("express");
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
 const PORT = 4000;
 const router = require("./routes/api/blog");
-app.use(cors());
 const connectDB = require("./config/db");
 const path = require("path");
+
+app.use(cors());
 
 connectDB();
 

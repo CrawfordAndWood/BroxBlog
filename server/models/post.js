@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 let post = new Schema({
   title: String,
-  body: String, //object array - contains paragraphs, images, lists etc.
+  post: String, //object array - contains paragraphs, images, lists etc.
   created: Date,
   modified: Date,
   tags: Array,
-  intro: String
+  intro: String,
 });
 
 module.exports = mongoose.model("post", post);

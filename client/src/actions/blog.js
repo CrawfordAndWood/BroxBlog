@@ -12,15 +12,7 @@ export const getAllPosts = () => async (dispatch) => {
 
 export const savePost = (form) => async (dispatch) => {
   try {
-    console.log("saving post", form);
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    console.log("form", form);
     const res = await axios.post(`http://127.0.0.1:4000/new`, form);
-    console.log("resp", res);
   } catch (error) {
     console.log("error saving post", error.message);
   }

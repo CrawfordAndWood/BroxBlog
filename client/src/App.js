@@ -3,40 +3,36 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import Blog from "./components/blog/Blog";
 import BlogContainer from "./components/blogcontainer/BlogContainer";
-import Writer from "./components/write/Writer"
-import Navbar from "./components/nav/Navbar"
-import NotFound from "./components/layout/NotFound"
+import Writer from "./components/write/Writer";
+import Navbar from "./components/nav/Navbar";
+import NotFound from "./components/layout/NotFound";
 import store from "./store";
 
 //css
-import './App.css';
+import "./App.css";
 
 const App = () => {
   return (
     <Provider store={store}>
       <Router>
-      <Fragment>
-        <div className="App">
-          <Navbar className="navbar"/>
-          <div className="sidebar-left"></div>
-          <div className="brox-content">
-            <Switch>
-              <Route exact path="/" component={BlogContainer} />
-              <Route exact path="/article" component={Blog} />
-              <Route exact path="/write" component={Writer}/>
-              <Route component={NotFound} />
-            </Switch>
+        <Fragment>
+          <div className="App">
+            <Navbar className="navbar" />
+            <div className="sidebar-left"></div>
+            <div className="brox-content">
+              <Switch>
+                <Route exact path="/" component={Blog} />
+                <Route exact path="/write" component={Writer} />
+                <Route component={NotFound} />
+              </Switch>
+            </div>
+            <div className="sidebar-right"></div>
+            <footer className="footer">Copyright Crawford and Wood 2020</footer>
           </div>
-          <div className="sidebar-right"></div>
-          <footer className="footer">
-            Copyright Crawford and Wood 2020
-        </footer>
-        </div>
-
-      </Fragment>
+        </Fragment>
       </Router>
     </Provider>
   );
-}
+};
 
 export default App;
