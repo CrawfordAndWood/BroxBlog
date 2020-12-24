@@ -1,8 +1,9 @@
 const express = require("express");
+var bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
 const PORT = 4000;
-const router = require("./routes/api/blog")
+const router = require("./routes/api/blog");
 app.use(cors());
 const connectDB = require("./config/db");
 const path = require("path");
@@ -18,6 +19,12 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
 
 app.use("/", router);
 app.listen(PORT, () => {

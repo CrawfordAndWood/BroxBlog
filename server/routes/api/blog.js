@@ -1,19 +1,29 @@
 const express = require("express");
 const router = express.Router();
-const config = require("config");
 const BlogService = require("../../services/blogService");
 const blogService = new BlogService();
-const cors = require('cors');
+const auth = require("../../middleware/auth");
 
-//router.all('*', cors());
-router.route("/").get(async (req, res) => {
-    try{
-        const posts = await blogService.getAllPosts();
-        console.log('posts', posts)
-        res.json(posts);
-    } catch(error){
-        res.status(500).json(error.message);
+router.get("/", async (req, res) => {
+  try {
+    const posts = await blogService.getAllPosts();
+    res.json(posts);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+});
+
+router.post("/new", auth, async (req, res) => {
+  try {
+    console.log("well done you made it", req.body);
+    let newPostResult = await blogService.newPost(req.body);
+    if (newPostResult.Status === "FAILED") {
+      return res.status(400).json({ errors: [{ msg: newPostResult.Message }] });
     }
+    return res.json(newPostResult);
+  } catch (err) {
+    res.status(500).send("Server error", err.message);
+  }
 });
 
 module.exports = router;
