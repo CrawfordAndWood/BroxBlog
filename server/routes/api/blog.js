@@ -13,6 +13,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:postid", async (req, res) => {
+  try {
+    const post = await blogService.getPost(req.params.postid);
+    res.json(post);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+});
+
 router.post("/new", auth, async (req, res) => {
   try {
     let newPostResult = await blogService.newPost(req.body);

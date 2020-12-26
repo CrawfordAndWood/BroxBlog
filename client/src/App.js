@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import Blog from "./components/blog/Blog";
-import BlogContainer from "./components/blogcontainer/BlogContainer";
+import Post from "./components/post/Post";
 import Writer from "./components/write/Writer";
 import Navbar from "./components/nav/Navbar";
 import NotFound from "./components/layout/NotFound";
@@ -23,6 +23,7 @@ const App = () => {
               <Switch>
                 <Route exact path="/" component={Blog} />
                 <Route exact path="/write" component={Writer} />
+                <Route exact path="/post" component={Post} />
                 <Route component={NotFound} />
               </Switch>
             </div>

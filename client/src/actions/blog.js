@@ -1,4 +1,4 @@
-import { GET_ALL_POSTS } from "./types";
+import { GET_POST, GET_ALL_POSTS, LOADING } from "./types";
 import axios from "axios";
 
 export const getAllPosts = () => async (dispatch) => {
@@ -7,6 +7,17 @@ export const getAllPosts = () => async (dispatch) => {
     dispatch({ type: GET_ALL_POSTS, payload: res.data });
   } catch (error) {
     console.log("err getting blog", error.message);
+  }
+};
+
+export const getPost = (postId) => async (dispatch) => {
+  try {
+    dispatch({ type: LOADING, payload: true });
+    const res = await axios.get(`http://127.0.0.1:4000/${postId}`);
+    console.log("what cam eback?", res.data);
+    dispatch({ type: GET_POST, payload: res.data });
+  } catch (err) {
+    console.log("error getting post", err.message);
   }
 };
 

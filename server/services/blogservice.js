@@ -14,6 +14,16 @@ class BlogService {
     }
   }
 
+  async getPost(postId) {
+    try {
+      console.log("postid?", postId);
+      let post = await Post.findOne({ _id: postId });
+      return post;
+    } catch (err) {
+      return err.message;
+    }
+  }
+
   /* Post Area  */
   async newPost(newPostArgs) {
     try {
