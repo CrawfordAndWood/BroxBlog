@@ -20,7 +20,7 @@ import {
   faChevronCircleUp,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-import "./table.scss";
+import "./table.css";
 
 const Items = ({
   addEmptyRow,

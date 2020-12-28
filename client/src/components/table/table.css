@@ -1,5 +1,3 @@
-$myBlue: royalblue;
-
 .items-paging {
 }
 
@@ -13,7 +11,6 @@ $myBlue: royalblue;
 
 .pager-active svg {
   cursor: pointer;
-  color: $myBlue;
 }
 
 .pager-inactive svg {
@@ -71,10 +68,6 @@ tr:nth-child(even) .itemInput {
   background-color: rgba(233, 231, 231, 0.911);
 }
 
-// .search-table {
-//   width: 100%;
-// }
-
 .search-table a {
   padding-left: 1em;
   color: blue;
@@ -92,7 +85,6 @@ tr:nth-child(even) .itemInput {
 
 .search-bar svg {
   cursor: pointer;
-  color: $myBlue;
 }
 
 .table {

@@ -7,6 +7,7 @@ import {
   faChevronCircleRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
+import "./table.css";
 
 export const Pagination = ({
   updatePageFn,

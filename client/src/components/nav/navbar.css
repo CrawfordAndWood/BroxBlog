@@ -8,13 +8,12 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 30vmin;
   pointer-events: none;
 }
 
 .brox-logo-container {
-  border-top: #4169e1 0.1rem solid;
-  border-bottom: #4169e1 0.1rem solid;
+  display: inline-block;
 }
 
 .header-big,

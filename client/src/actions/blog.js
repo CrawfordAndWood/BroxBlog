@@ -9,6 +9,7 @@ import {
   GET_DATA,
   VIEW_ERROR,
   ITEM_COUNT,
+  RESET_SEARCH,
 } from "./types";
 import axios from "axios";
 
@@ -90,4 +91,9 @@ export const updateLimit = (search, newLimit) => (dispatch) => {
 export const updatePage = (search, page, limit) => (dispatch) => {
   dispatch(getSelectedPosts(search, page, limit));
   dispatch({ type: UPDATE_PAGE, payload: page });
+};
+
+export const resetSearch = (limit) => (dispatch) => {
+  dispatch(getSelectedPosts("", 1, limit));
+  dispatch({ type: RESET_SEARCH });
 };

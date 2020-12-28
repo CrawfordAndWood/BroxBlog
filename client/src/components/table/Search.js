@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import "./table.css";
 
 export const Search = ({
   searchFn,

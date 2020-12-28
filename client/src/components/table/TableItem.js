@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import "./role.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
