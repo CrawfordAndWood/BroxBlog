@@ -1,5 +1,31 @@
-import { GET_POST, GET_ALL_POSTS, LOADING } from "./types";
+import {
+  GET_POST,
+  GET_SELECTED_POSTS,
+  GET_ALL_POSTS,
+  LOADING,
+  SEARCH,
+  UPDATE_LIMIT,
+  UPDATE_PAGE,
+  GET_DATA,
+  VIEW_ERROR,
+  ITEM_COUNT,
+} from "./types";
 import axios from "axios";
+
+export const countPosts = (search = "") => async (dispatch) => {
+  try {
+    const res = await axios.get(`http://127.0.0.1:4000/count/${search}`);
+    dispatch({ type: ITEM_COUNT, payload: res.data });
+  } catch (error) {
+    dispatch({
+      type: VIEW_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
 
 export const getAllPosts = () => async (dispatch) => {
   try {
@@ -7,6 +33,32 @@ export const getAllPosts = () => async (dispatch) => {
     dispatch({ type: GET_ALL_POSTS, payload: res.data });
   } catch (error) {
     console.log("err getting blog", error.message);
+  }
+};
+
+export const getSelectedPosts = (search = "", page = 1, limit = 10) => async (
+  dispatch
+) => {
+  //TODO factor out params into single options object.
+  try {
+    dispatch({ type: LOADING });
+    dispatch({ type: SEARCH, payload: search });
+    dispatch(countPosts(search));
+    const res = await axios.get(`http://127.0.0.1:4000/${page}/${limit}`);
+    console.log("re", res.data);
+    dispatch({ type: GET_SELECTED_POSTS, payload: res.data });
+    dispatch({ type: UPDATE_LIMIT, payload: limit });
+    dispatch({ type: UPDATE_PAGE, payload: page });
+    dispatch({ type: GET_DATA });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: VIEW_ERROR,
+      payload: {
+        msg: error.response,
+        status: error.response.status,
+      },
+    });
   }
 };
 
@@ -27,4 +79,15 @@ export const savePost = (form) => async (dispatch) => {
   } catch (error) {
     console.log("error saving post", error.message);
   }
+};
+
+export const updateLimit = (search, newLimit) => (dispatch) => {
+  dispatch(getSelectedPosts(search, 1, newLimit));
+  dispatch({ type: UPDATE_PAGE, payload: 1 });
+  dispatch({ type: UPDATE_LIMIT, payload: newLimit });
+};
+
+export const updatePage = (search, page, limit) => (dispatch) => {
+  dispatch(getSelectedPosts(search, page, limit));
+  dispatch({ type: UPDATE_PAGE, payload: page });
 };

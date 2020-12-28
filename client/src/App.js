@@ -12,6 +12,7 @@ import store from "./store";
 import "./App.css";
 
 const App = () => {
+  //I should probably get the posts here.
   return (
     <Provider store={store}>
       <Router>

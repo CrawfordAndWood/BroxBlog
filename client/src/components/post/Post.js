@@ -1,12 +1,13 @@
 import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
+import Spinner from "../layout/Spinner";
 
 const Post = ({ posts: { post, loading } }) => {
   useEffect(() => {}, []);
   return (
     <div className="bb-front-page">
       {loading ? (
-        <p>Loading</p>
+        <Spinner />
       ) : (
         <Fragment>
           <div dangerouslySetInnerHTML={{ __html: post.post }}></div>

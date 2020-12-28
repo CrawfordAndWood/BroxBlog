@@ -1,4 +1,9 @@
-import { GET_POST, GET_ALL_POSTS, LOADING } from "../actions/types";
+import {
+  GET_POST,
+  GET_ALL_POSTS,
+  LOADING,
+  GET_SELECTED_POSTS,
+} from "../actions/types";
 
 const initialState = {
   post: {},
@@ -21,6 +26,7 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case GET_ALL_POSTS:
+    case GET_SELECTED_POSTS:
       return {
         ...state,
         posts: payload,

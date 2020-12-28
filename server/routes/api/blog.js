@@ -13,6 +13,48 @@ router.get("/", async (req, res) => {
   }
 });
 
+//@route    GET api/areas/
+//@desc     Get area management page
+//@access   Private - eventually only global admin has option
+router.get("/:page/:limit", auth, async (req, res) => {
+  try {
+    let areas = await blogService.getSelectedPosts(req.params);
+    res.json(areas);
+  } catch (err) {
+    res.status(500).send("Server Error", err);
+  }
+});
+
+//@route    GET api/area/search
+//@desc     Filter area
+//@access   Private - eventually only global admin has option
+router.get("/:term/:page/:limit", auth, async (req, res) => {
+  try {
+    let areas = await blogService.getSelectedPosts(req.params);
+    res.json(areas);
+  } catch (err) {
+    res.status(500).send("Server Error", err);
+  }
+});
+
+router.get("/count", auth, async (req, res) => {
+  try {
+    const areaCount = await blogService.countPosts();
+    res.json(areaCount);
+  } catch (err) {
+    res.status(500).send("Server Error");
+  }
+});
+
+router.get("/count/:term", auth, async (req, res) => {
+  try {
+    const areaCount = await blogService.countPosts(req.params.term);
+    res.json(areaCount);
+  } catch (err) {
+    res.status(500).send("Server Error");
+  }
+});
+
 router.get("/:postid", async (req, res) => {
   try {
     const post = await blogService.getPost(req.params.postid);
