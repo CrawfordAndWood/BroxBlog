@@ -1,4 +1,12 @@
-.items-paging {
+.donate-button a {
+  margin-left: 10em;
+  padding: 0.5em;
+  border: 3px solid red;
+  border-radius: 5px;
+  font-weight: 500;
+  height: 3em;
+  font-size: x-large;
+  background-color: snow;
 }
 
 .items-paging td {
@@ -45,7 +53,6 @@
 }
 
 .search-bar {
-  padding-left: 1em;
   width: 50%;
   border: 2px solid gray;
   border-radius: 1em;
@@ -57,21 +64,7 @@
   border-radius: 5px;
   padding-left: 2em;
   padding-right: 1em;
-  height: 2em;
-}
-
-tr:nth-child(odd) .itemInput {
-  background-color: snow;
-}
-
-tr:nth-child(even) .itemInput {
-  background-color: rgba(233, 231, 231, 0.911);
-}
-
-.search-table a {
-  padding-left: 1em;
-  color: blue;
-  text-decoration: underline;
+  font-size: larger;
 }
 
 .search-form {
@@ -100,14 +93,6 @@ tr:nth-child(even) .itemInput {
   padding: 0;
   border: 1px solid lightgray;
   border-radius: 0.1px;
-}
-
-table tr:nth-child(odd) td {
-  color: rgb(46, 46, 46);
-  background-color: snow;
-}
-table tr:nth-child(even) td {
-  background-color: rgba(233, 231, 231, 0.911);
 }
 
 .item-table-save svg {

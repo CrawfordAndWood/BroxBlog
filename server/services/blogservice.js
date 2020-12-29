@@ -26,7 +26,7 @@ class BlogService {
       return posts;
     }
     let term = new RegExp(params.term, "i");
-    let posts = await Area.find({
+    let posts = await Post.find({
       $or: [{ title: term }, { post: term }, { tags: term }],
     })
       .skip(Number(params.page - 1) * Number(params.limit))

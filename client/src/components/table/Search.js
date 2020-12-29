@@ -2,6 +2,10 @@ import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { Link, withRouter } from "react-router-dom";
+
+import BroxLogo from "../layout/BroxLogo";
+
 import "./table.css";
 
 export const Search = ({
@@ -53,6 +57,11 @@ export const Search = ({
       <table className="search-table">
         <tbody>
           <tr>
+            <td>
+              <Link to="/" style={{ textDecoration: "none" }}>
+                <BroxLogo />
+              </Link>
+            </td>
             <td className="search-bar">
               <input
                 autoComplete="off"
@@ -70,10 +79,11 @@ export const Search = ({
                 onClick={(e) => onSubmit(e)}
               />
             </td>
-            <td>
-              <a href="#" onClick={() => onReset()}>
-                clear search{" "}
-              </a>
+            <td className="donate-button">
+              <Link to="/donate">Donate</Link>
+            </td>
+            <td className="write-link button">
+              <Link to="/write">Write</Link>
             </td>
           </tr>
         </tbody>

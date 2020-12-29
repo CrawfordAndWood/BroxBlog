@@ -10,6 +10,7 @@ import {
 import { Link, withRouter } from "react-router-dom";
 import Spinner from "../layout/Spinner";
 import Pagination from "../table/Pagination";
+import Blurb from "./Blurb";
 import "./blog.css";
 
 const Blog = ({
@@ -24,6 +25,7 @@ const Blog = ({
   }, []);
   return (
     <div className="bb-front-page">
+      <Blurb />
       {loading ? (
         <Spinner />
       ) : (

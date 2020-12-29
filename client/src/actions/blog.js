@@ -45,14 +45,15 @@ export const getSelectedPosts = (search = "", page = 1, limit = 10) => async (
     dispatch({ type: LOADING });
     dispatch({ type: SEARCH, payload: search });
     dispatch(countPosts(search));
-    const res = await axios.get(`http://127.0.0.1:4000/${page}/${limit}`);
-    console.log("re", res.data);
+    const res = await axios.get(
+      `http://127.0.0.1:4000/${search}/${page}/${limit}`
+    );
     dispatch({ type: GET_SELECTED_POSTS, payload: res.data });
     dispatch({ type: UPDATE_LIMIT, payload: limit });
     dispatch({ type: UPDATE_PAGE, payload: page });
     dispatch({ type: GET_DATA });
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
     dispatch({
       type: VIEW_ERROR,
       payload: {

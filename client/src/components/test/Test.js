@@ -1,13 +1,13 @@
-import React, {Fragment, useEffect} from "react";
+import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
-//import {getPost} from "../../actions/blog";
 
 const Test = () => {
-    useEffect(() => {}, []);
-    return (
+  useEffect(() => {}, []);
+  return (
     <Fragment>
-        <h1>Main Blog Container</h1>
-    </Fragment>)
-}
+      <h1>Test Component</h1>
+    </Fragment>
+  );
+};
 
 export default Test;

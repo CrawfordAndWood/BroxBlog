@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import Blog from "./components/blog/Blog";
 import Post from "./components/post/Post";
 import Writer from "./components/write/Writer";
+import Donate from "./components/donate/Donate";
 import Navbar from "./components/nav/Navbar";
 import NotFound from "./components/layout/NotFound";
 import store from "./store";
@@ -25,6 +26,7 @@ const App = () => {
                 <Route exact path="/" component={Blog} />
                 <Route exact path="/write" component={Writer} />
                 <Route exact path="/post" component={Post} />
+                <Route exact path="/donate" component={Donate} />
                 <Route component={NotFound} />
               </Switch>
             </div>

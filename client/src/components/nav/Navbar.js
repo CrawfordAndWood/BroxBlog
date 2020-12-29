@@ -10,19 +10,11 @@ const Navbar = ({ getSelectedPosts, resetSearch }) => {
   useEffect(() => {}, []);
   return (
     <Fragment>
-      <header className="App-header">
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <div className="brox-logo-container">
-            <p className="header-big">Brox</p>
-            <p className="header-small">Blog</p>
-          </div>
-        </Link>
-      </header>
-      <Search searchFn={getSelectedPosts} resetFn={resetSearch} />
-      <div className="donate-bar">
-        Patreon/Donate
-        <Link to="/write">Write</Link>
+      <header></header>
+      <div>
+        <Search searchFn={getSelectedPosts} resetFn={resetSearch} />
       </div>
+      <div></div>
     </Fragment>
   );
 };

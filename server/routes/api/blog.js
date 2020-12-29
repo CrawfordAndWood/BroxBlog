@@ -13,25 +13,23 @@ router.get("/", async (req, res) => {
   }
 });
 
-//@route    GET api/areas/
-//@desc     Get area management page
 //@access   Private - eventually only global admin has option
-router.get("/:page/:limit", auth, async (req, res) => {
+router.get("//:page/:limit", auth, async (req, res) => {
   try {
-    let areas = await blogService.getSelectedPosts(req.params);
-    res.json(areas);
+    let posts = await blogService.getSelectedPosts(req.params);
+    res.json(posts);
   } catch (err) {
     res.status(500).send("Server Error", err);
   }
 });
 
-//@route    GET api/area/search
-//@desc     Filter area
 //@access   Private - eventually only global admin has option
 router.get("/:term/:page/:limit", auth, async (req, res) => {
   try {
-    let areas = await blogService.getSelectedPosts(req.params);
-    res.json(areas);
+    console.log("is this the request?", req.params);
+    let posts = await blogService.getSelectedPosts(req.params);
+    console.log("response from searh", posts);
+    res.json(posts);
   } catch (err) {
     res.status(500).send("Server Error", err);
   }
@@ -39,8 +37,9 @@ router.get("/:term/:page/:limit", auth, async (req, res) => {
 
 router.get("/count", auth, async (req, res) => {
   try {
-    const areaCount = await blogService.countPosts();
-    res.json(areaCount);
+    console.log("counting");
+    const postCount = await blogService.countPosts();
+    res.json(postCount);
   } catch (err) {
     res.status(500).send("Server Error");
   }
@@ -48,8 +47,9 @@ router.get("/count", auth, async (req, res) => {
 
 router.get("/count/:term", auth, async (req, res) => {
   try {
-    const areaCount = await blogService.countPosts(req.params.term);
-    res.json(areaCount);
+    console.log("counting 2");
+    const postCount = await blogService.countPosts(req.params.term);
+    res.json(postCount);
   } catch (err) {
     res.status(500).send("Server Error");
   }

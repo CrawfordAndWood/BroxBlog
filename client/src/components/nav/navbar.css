@@ -8,34 +8,10 @@
 }
 
 .App-logo {
-  height: 30vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
-.brox-logo-container {
-  display: inline-block;
-}
-
-.header-big,
-.header-small {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  background: -webkit-linear-gradient(45deg, #e0b941, #4169e1 90%);
-  background-clip: border-box;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 0;
-}
-
-.header-big {
-  font-size: 48px;
-}
-
-.header-small {
-  font-size: 14px;
-}
-
-.search-bar,
-.donate-bar {
+.search-bar {
   vertical-align: middle;
 }
