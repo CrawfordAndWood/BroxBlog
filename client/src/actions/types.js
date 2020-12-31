@@ -25,3 +25,6 @@ export const GET_DATA = "GET_DATA";
 export const SET_ROUTE = "SET_ROUTE";
 export const SET_SORT_COLUMN = "SET_SORT_COLUMN";
 export const SORT = "SORT";
+
+//file
+export const UPLOAD_FILE = "UPLOAD_FILE";

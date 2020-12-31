@@ -8,7 +8,7 @@ let post = new Schema({
   created: Date,
   modified: Date,
   tags: Array,
-  intro: String,
+  image: Object,
 });
 
 module.exports = mongoose.model("post", post);

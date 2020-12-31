@@ -75,9 +75,16 @@ export const getPost = (postId) => async (dispatch) => {
   }
 };
 
-export const savePost = (form) => async (dispatch) => {
+export const savePost = (form, image) => async (dispatch) => {
   try {
-    const res = await axios.post(`http://127.0.0.1:4000/new`, form);
+    form.image = image;
+    console.log("saving new post", form);
+    let fd = new FormData();
+    fd.append("Image", image, image.name);
+    console.log("fd", fd);
+    const img = axios.post(`http://127.0.0.1:4000/upload`, fd);
+
+    //const res = await axios.post(`http://127.0.0.1:4000/new`, form);
   } catch (error) {
     console.log("error saving post", error.message);
   }

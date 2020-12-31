@@ -1,51 +1,88 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import SimpleFileUpload from "../utils/SimpleFileUpload";
+import UploadAdapter from "../utils/UploadAdapter";
+import MyUploadAdapter from "../utils/MyUploadAdapter";
 import { connect } from "react-redux";
 import { savePost } from "../../actions/blog";
 
-const Test = ({ savePost }) => {
+const Writer = ({ savePost, upload: { image } }) => {
   const [formData, setFormData] = useState({
+    thumb: "",
+    title: "",
     post: "",
   });
 
-  const { post } = formData;
+  const { thumb, title, post } = formData;
 
   const onChange = (post) => setFormData({ ...formData, post });
+  const onTitleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  // const onImageUpload = (e) => {
+  //   console.log(e.target.files[0]);
+  //   setFormData({ ...formData, [e.target.name]: e.target.files[0] });
+  // };
 
-  const onSubmit = async (e) => {
+  function onSubmit(e) {
     e.preventDefault();
-    savePost(formData);
-  };
+    savePost(formData, image);
+  }
   useEffect(() => {}, []);
 
   return (
     <Fragment>
       <form className="form" onSubmit={(e) => onSubmit(e)}>
-        <input type="submit" className="btn btn-success" value="Save Changes" />
-        <CKEditor
-          editor={ClassicEditor}
-          data="<p>Hello from CKEditor 5!</p>"
-          onReady={(editor) => {
-            // You can store the "editor" and use when it is needed.
-            console.log("Editor is ready to use!", editor);
-          }}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            onChange(data);
-          }}
-          onBlur={(event, editor) => {
-            //console.log("Blur.", editor);
-          }}
-          onFocus={(event, editor) => {
-            //console.log("Focus.", editor);
-          }}
-          name="post"
-          value={post}
-        />
+        <div>
+          <input
+            type="submit"
+            className="btn btn-success"
+            value="Save Changes"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            name="title"
+            value={title}
+            onChange={(e) => onTitleChange(e)}
+          />
+        </div>
+        <SimpleFileUpload />
+        {/* <div>
+          <input
+            type="file"
+            onChange={(e) => onImageUpload(e)}
+            value={thumb}
+            name="thumb"
+          />
+        </div> */}
+        <div>
+          <CKEditor
+            editor={ClassicEditor}
+            data=""
+            onChange={(event, editor) => {
+              console.log("event: ", event);
+              const data = editor.getData();
+              onChange(data);
+            }}
+            onBlur={(event, editor) => {
+              //console.log("Blur.", editor);
+            }}
+            onFocus={(event, editor) => {
+              //console.log("Focus.", editor);
+            }}
+            name="post"
+            value={post}
+          />
+        </div>
       </form>
     </Fragment>
   );
 };
 
-export default connect(null, { savePost })(Test);
+const mapStateToProps = (state) => ({
+  upload: state.upload,
+});
+
+export default connect(mapStateToProps, { savePost })(Writer);
