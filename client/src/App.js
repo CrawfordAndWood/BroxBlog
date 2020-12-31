@@ -7,6 +7,7 @@ import Writer from "./components/write/Writer";
 import Donate from "./components/donate/Donate";
 import Navbar from "./components/nav/Navbar";
 import NotFound from "./components/layout/NotFound";
+import ImageReader from "./components/utils/ImageReader";
 import store from "./store";
 
 //css
@@ -27,6 +28,7 @@ const App = () => {
                 <Route exact path="/write" component={Writer} />
                 <Route exact path="/post" component={Post} />
                 <Route exact path="/donate" component={Donate} />
+                <Route exact path="/pics" component={ImageReader} />
                 <Route component={NotFound} />
               </Switch>
             </div>

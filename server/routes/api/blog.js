@@ -95,14 +95,15 @@ router.get("/count/:term", auth, async (req, res) => {
   }
 });
 
-router.get("/:postid", async (req, res) => {
-  try {
-    const post = await blogService.getPost(req.params.postid);
-    res.json(post);
-  } catch (error) {
-    res.status(500).json(error.message);
-  }
-});
+// router.get("/:postid", async (req, res) => {
+//   try {
+//     console.log("going agter post");
+//     const post = await blogService.getPost(req.params.postid);
+//     res.json(post);
+//   } catch (error) {
+//     res.status(500).json(error.message);
+//   }
+// });
 
 router.post("/new", auth, async (req, res) => {
   try {
@@ -140,11 +141,12 @@ router.post("/upload", upload.any("image"), (req, res, next) => {
 });
 
 //get for the image? Can hard code path in there.
-router.get("/image", auth, async (req, res) => {
+router.get("/images", auth, async (req, res) => {
   try {
+    console.log("getting images");
     let images = await imageService.getAllImages();
-    console.log("response from searh", images);
-    res.json(images);
+    console.log("response from searh", images[0]);
+    res.json(images[0]);
   } catch (err) {
     res.status(500).send("Server err", err.message);
   }

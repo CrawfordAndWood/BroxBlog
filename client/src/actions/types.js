@@ -28,3 +28,4 @@ export const SORT = "SORT";
 
 //file
 export const UPLOAD_FILE = "UPLOAD_FILE";
+export const SET_IMAGE = "SET_IMAGE";

@@ -4,15 +4,12 @@ import { upload } from "../../actions/upload";
 
 const SimpleFileUpload = ({ upload }) => {
   const onFileChange = (e) => {
-    console.log("file");
     const file = e.target.files[0];
-    console.log("fil nam", file);
     upload(file);
   };
 
   return (
     <div>
-      <h2>File upload using form in React</h2>
       <hr />
       <div>
         <form>
