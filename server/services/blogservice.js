@@ -61,8 +61,7 @@ class BlogService {
       await newPost.save();
 
       let response = {
-        Status: "SUCCESS",
-        Message: "has been created and a welcome email sent",
+        newPostId: newPost._id,
       };
       return response;
     } catch (error) {

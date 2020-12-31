@@ -1,6 +1,8 @@
-const uuid = require("uuid");
-
 const Image = require("../models/image");
+const Post = require("../models/post");
+
+const uuid = require("uuid");
+const fs = require("fs");
 
 class ImageService {
   constructor() {}
@@ -23,10 +25,30 @@ class ImageService {
     }
   }
 
-  async newImage(image) {
+  async saveImageForPost(image) {
     try {
-      let newImage = new Image(image);
-      await newImage.save();
+      console.log("image hsould have an id", image);
+      let post = await Post.findOne({ _id: image.filename });
+      post.image = fs.readFileSync(image.path);
+      await post.save();
+
+      console.log("image saved", post);
+      let response = {
+        Status: "SUCCESS",
+        Message: "has been created and a welcome email sent",
+      };
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async saveImage(image) {
+    try {
+      var new_img = new Image();
+      new_img.img.data = fs.readFileSync(image);
+      new_img.img.contentType = "image/png"; // or 'image/png'
+      new_img.save();
 
       let response = {
         Status: "SUCCESS",
