@@ -12,6 +12,7 @@ import Spinner from "../layout/Spinner";
 import Pagination from "../table/Pagination";
 import Blurb from "./Blurb";
 import "./blog.css";
+import { arrayBufferToBase64 } from "../../utils/arrayTansformer";
 
 const Blog = ({
   getPost,
@@ -26,6 +27,7 @@ const Blog = ({
   return (
     <div className="bb-front-page">
       <Blurb />
+      <Pagination updatePageFn={updatePage} updateLimitFn={updateLimit} />
       {loading ? (
         <Spinner />
       ) : (
@@ -33,11 +35,29 @@ const Blog = ({
           <div className="blog-container">
             {posts.map((p, i) => (
               <Link to="/post" key={p._id} onClick={() => getPost(p._id)}>
-                <h3>The title of the post that arouses interest {i}</h3>
-                <div
-                  className="bb-post-link"
-                  dangerouslySetInnerHTML={{ __html: p.post.substring(0, 200) }}
-                ></div>
+                <h3>{p.title}</h3>
+                <div className="bb-post-link">
+                  <img
+                    className="post-image"
+                    src={
+                      p.image !== undefined
+                        ? "data:image/jpeg;base64," +
+                          arrayBufferToBase64(p.image.data)
+                        : ""
+                    }
+                    alt="Helpful alt text"
+                  />
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: p.post.substring(0, 200),
+                    }}
+                  ></div>
+                  <small>
+                    modified: {p.modified !== undefined ? p.modified : ""}{" "}
+                    <br />
+                    by: {p.author}
+                  </small>
+                </div>
               </Link>
             ))}
             <Pagination updatePageFn={updatePage} updateLimitFn={updateLimit} />

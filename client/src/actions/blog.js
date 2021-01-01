@@ -42,12 +42,13 @@ export const getSelectedPosts = (search = "", page = 1, limit = 10) => async (
 ) => {
   //TODO factor out params into single options object.
   try {
-    dispatch({ type: LOADING });
+    dispatch({ type: LOADING, payload: true });
     dispatch({ type: SEARCH, payload: search });
     dispatch(countPosts(search));
     const res = await axios.get(
       `http://127.0.0.1:4000/${search}/${page}/${limit}`
     );
+    console.log("re s", res.data);
     dispatch({ type: GET_SELECTED_POSTS, payload: res.data });
     dispatch({ type: UPDATE_LIMIT, payload: limit });
     dispatch({ type: UPDATE_PAGE, payload: page });

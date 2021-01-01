@@ -30,9 +30,11 @@ class ImageService {
       console.log("image hsould have an id", image);
       let post = await Post.findOne({ _id: image.filename });
       post.image = fs.readFileSync(image.path);
+
+      post.modified = Date.now();
+      post.author = "George Crawford";
       await post.save();
 
-      console.log("image saved", post);
       let response = {
         Status: "SUCCESS",
         Message: "has been created and a welcome email sent",

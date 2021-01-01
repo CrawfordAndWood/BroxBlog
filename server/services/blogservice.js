@@ -45,7 +45,10 @@ class BlogService {
 
   async getPost(postId) {
     try {
+      console.log("getting post?", postId);
       let post = await Post.findOne({ _id: postId });
+      console.log("getting post?", post);
+
       return post;
     } catch (err) {
       return err.message;

@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faWindowClose } from "@fortawesome/free-solid-svg-icons";
 import { Link, withRouter } from "react-router-dom";
 
 import BroxLogo from "../layout/BroxLogo";
@@ -45,11 +45,10 @@ export const Search = ({
       term: "",
     });
 
-    if (searchArgs === undefined) {
-      return searchFn("", 1, limit);
-    }
-    console.log(searchArgs, "sar");
-    return searchFn(searchArgs, "", 1, limit);
+    // if (searchArgs === undefined) {
+    //   return searchFn("", 1, limit);
+    // }
+    // return searchFn(searchArgs, "", 1, limit);
   };
 
   return (
@@ -73,6 +72,9 @@ export const Search = ({
                 onChange={(e) => onSearchChange(e)}
                 onKeyDown={(e) => onEnter(e)}
               />
+              {/* <span className="clear-search" onClick={(e) => onReset(e)}>
+                X&nbsp;&nbsp;
+              </span> */}
               <FontAwesomeIcon
                 icon={faSearch}
                 size="lg"

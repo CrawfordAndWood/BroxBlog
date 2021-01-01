@@ -17,6 +17,10 @@
   width: 2em;
 }
 
+.clear-search {
+  cursor: pointer;
+}
+
 .pager-active svg {
   cursor: pointer;
 }
@@ -52,8 +56,12 @@
   font-size: 1em;
 }
 
+.search-table {
+  width: 100%;
+}
+
 .search-bar {
-  width: 50%;
+  width: 30%;
   border: 2px solid gray;
   border-radius: 1em;
 }
@@ -63,7 +71,6 @@
   border: none;
   border-radius: 5px;
   padding-left: 2em;
-  padding-right: 1em;
   font-size: larger;
 }
 
@@ -81,7 +88,7 @@
 }
 
 .table {
-  width: 80%;
+  width: 100%;
   border: 1px solid lightslategray;
   border-radius: 0.1px;
   font-size: large;
